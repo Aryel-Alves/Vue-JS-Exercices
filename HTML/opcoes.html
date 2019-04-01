@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <span> Escolha uma opcao: </span> <br>
+  <input type='radio' id='soma' name='opcao' value='soma'/> A - Soma <br>
+  <input type='radio' id='diferenca' name='opcao' value=''/> B - Diferença <br>
+  <input type='radio' id='produto' name='opcao' value=''/> C - Produto <br>
+  <input type='radio' id='divisao' name='opcao' value=''/> D - Divisao <br>
+  <span> Numero: </span> <input type='number' id='numero1'/> <br>
+  <span> Numero: </span> <input type='number' id='numero2' style="margin-top: 5px"/> <br>
+  <input type="submit" value="Calcular" class="btn btn-secondary" size="30"
+  onclick="calcular()" style="width: 350px; margin: 10px;"/>
+
+  <div id="resultado" style=" text-align: center; width: 350px;}"> </div>
+  <script>
+    var numero1, numero2, option;
+    function calcular(){
+      numero1 = parseInt(document.getElementById("numero1").value);
+      numero2 = parseInt(document.getElementById("numero2").value);
+      option = document.querySelector("input:checked");
+
+      if (option===soma){
+        var adicao;
+        adicao = numero1 + numero2;
+        document.getElementById("resultado").innerHTML = "A soma desses numeros é igual a " + adicao + "!";
+      }
+      else if (option===diferenca){
+        var menos;
+        menos = Math.abs(numero1 - numero2);
+        document.getElementById("resultado").innerHTML = "A diferença desses numeros é igual a " + menos + "!";
+      }
+      else if (option===produto){
+        var mult;
+        mult = numero1 * numero2;
+        document.getElementById("resultado").innerHTML = "A diferença desses numeros é igual a " + mult + "!";
+      }
+      else if (option===divisao){
+        var div;
+
+        if(numero1 == 0){
+          document.getElementById("resultado").innerHTML = "O denominador não pode ser zero!";
+        } else {
+          mult = numero1 / numero2;
+          document.getElementById("resultado").innerHTML = "A diferença desses numeros é igual a " + mult + "!";
+        }
+      }
+    }
+
+  </script>
+
+</body>

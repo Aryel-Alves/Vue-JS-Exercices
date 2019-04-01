@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Escola virtual - Pre matricula</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+		<style>
+			#box1{
+				padding: 10px;
+				margin-left: 30%;
+				margin-right: 30%;
+				width: 40%;
+				height: auto;
+				border-style: double;
+  			border-width: 5px;
+				background-color: white;
+			}
+			#box2{
+				padding: 10px;
+				margin-left: 30%;
+				margin-right: 30%;
+				width: 40%;
+				height: auto;
+		  	display: flex;
+				border-style: none double double double;
+  			border-width: 5px;
+				background-color: white;
+				text-align: left;
+			}
+			.info{
+				margin-left: 10px;
+			}
+			.texto{
+				margin-bottom: 8px;
+			}
+			.button{
+				margin-top: 10px;
+				margin-bottom: 10px;
+				text-align: center;
+			}
+		</style>
+		</head>
+	</head>
+
+	<body>
+		<div id="formulario">
+			<div style="text-align: center">
+				<h1> Escola virtual </h1>
+				<h2> Formulario de Pré-Matricula </h2>
+			</div>
+
+			<hr>
+
+			<div id="box1">
+				<span style="text-align: left"> Dados pessoais: </span>
+
+				<div style="display:flex; flex-direction: row; padding-left: 20%;">
+					<div style="text-align: right;">
+						<div class='texto'>Nome do Aluno: <br></div>
+						<div class='texto'>Data de Nascimento: <br></div>
+						<div class='texto'>Nome da Mãe: <br></div>
+						<div class='texto'>Nome do Pai: <br></div>
+						<div class='texto'>Telefone: <br></div>
+						<div>Email: <br></div>
+					</div>
+
+					<div style="text-align: left;">
+						<input v-model='studentName'><br>
+						<input type='date' v-model='birthDate'><br>
+						<input v-model='motherName'><br>
+						<input v-model='fatherName'><br>
+						<span>DDD(<input v-model='telefone.ddd' style='width:30px'>)
+							Tel: <input v-model='telefone.numero' style='width:120px'>
+							Ramal: <input v-model='telefone.ramal' style='width:40px'>
+						</span><br>
+						<input v-model='email'></span>
+					</div>
+				</div>
+			</div>
+
+			<div id="box2">
+				<div>
+					<b>Informações da Matricula:</b><br>
+					Serie:<br>
+					<select v-model="serie">
+						<option disabled value="">---</option>
+						<option>Pré Escolar</option>
+						<option>Ensino Medio</option>
+						<option>Outros</option>
+					</select>
+				</div>
+
+				<div class='info'>
+					<br>Turno:<br> <span><input type='radio' v-model='turno' value='manha'> Manha </span>
+					<br><span><input type='radio' v-model='turno' value='Noite'> Noite </span>
+				</div>
+
+				<div class='info'>
+					<br>Atividades Extracurriculares:<br>
+					<input type='checkbox' v-model='extra.infor'> Informatica<br>
+					<input type='checkbox' v-model='extra.music'> Musica<br>
+					<input type='checkbox' v-model='extra.balet'> Balet<br>
+					<input type='checkbox' v-model='extra.paint'> Pintura<br>
+					<input type='checkbox' v-model='extra.judo'> Judô<br>
+					<input type='checkbox' v-model='extra.fut'> Futebol<br>
+				</div>
+
+			</div>
+
+			<div class="button">
+				<button class="btn btn-success" type="submit" v-on:click="cadastrar()"
+				style="width:15%; margin-bottom: 5px">
+					Enviar
+				</button><br>
+				<button class="btn btn-secondary" type="submit" v-on:click="limpar()">
+					Limpar campos
+				</button>
+				<button class="btn btn-secondary" type="submit" v-on:click="tableUsers()">
+					Tabela de Usuarios
+				</button>
+			</div>
+
+			<table-user v-bind:itens='cadastro' v-if="tableShow">
+			</table-user>
+
+		</div>
+
+		<script>
+			var tableUser = Vue.component('table-user', {
+				props: ['itens'],
+				template: `
+					<div>
+						<table class="table table-dark table-striped">
+							<tr>
+								<th> Nome do Aluno </th>
+								<th> Nome da Mãe </th>
+								<th> Nome do Pai </th>
+								<th> Data de nascimento </th>
+								<th> Telefone </th>
+								<th> Email </th>
+								<th> Turno </th>
+								<th> Atividades Extra </th>
+								<th> Serie </th>
+							</tr>
+							<tr v-for="cadastro in itens"	v-bind:key="cadastro.id">
+								<td>{{ cadastro.studentName }}</td>
+								<td>{{ cadastro.motherName }}</td>
+								<td>{{ cadastro.fatherName }}</td>
+								<td>{{ cadastro.birthDate }}</td>
+								<td>{{ (cadastro.telefone.ddd)+' '+cadastro.telefone.numero+' '+cadastro.telefone.ramal }}</td>
+								<td>{{ cadastro.email }}</td>
+								<td>{{ cadastro.turno }}</td>
+								<td>
+									<small v-if="cadastro.extra.infor"> Informatica
+									</small>
+								</td>
+								<td>{{ cadastro.serie }}</td>
+							</tr>
+						</table>
+					<div>`,
+			})
+
+			var vm = new Vue ({
+				components: {tableUser},
+				el: '#formulario',
+				data:{
+					cadastro: [],
+					studentName: '',
+					birthDate: '',
+					motherName: '',
+					fatherName: '',
+					telefone: {
+						ddd: '',
+						numero: '',
+						ramal: '',
+					},
+					turno: '',
+					extra: {
+						infor: false,
+						music: false,
+						balet: false,
+						paint: false,
+						judo: false,
+						fut: false,
+					},
+					email: '',
+					serie: '',
+					turno: '',
+					tableShow: false,
+				},
+				methods:{
+					cadastrar() {
+						/*if(!this.validade()){
+							return;
+						}*/
+
+						let studentTemp = {
+							studentName: this.studentName,
+							birthDate: this.birthDate,
+							motherName: this.motherName,
+							fatherName: this.fatherName,
+							telefone: {
+								ddd: this.telefone.ddd,
+								numero: this.telefone.numero,
+								ramal: this.telefone.ramal,
+							},
+							turno: this.turno,
+							extra: {
+								infor: this.extra.infor,
+								music: this.extra.music,
+								balet: this.extra.balet,
+								paint: this.extra.paint,
+								judo: this.extra.judo,
+								fut: this.extra.fut,
+							},
+							email: this.email,
+							serie: this.serie,
+							turno: this.turno,
+						}
+
+						this.cadastro.push(studentTemp);
+						this.limpar();
+						alert('Cadastrado com Sucesso!');
+
+					},
+					limpar(){
+						this.studentName= '';
+						this.birthDate= '';
+						this.motherName= '';
+						this.fatherName= '';
+						this.telefone= {
+							ddd: '',
+							numero: '',
+							ramal: '',
+						};
+						this.turno= '';
+						this.extra= {
+							infor: false,
+							music: false,
+							balet: false,
+							paint: false,
+							judo: false,
+							fut: false,
+						},
+						this.email= '';
+						this.serie= '';
+						this.turno= '';
+					},
+					tableUsers(){
+							this.tableShow = !this.tableShow
+					}
+
+					/*validade() {
+						if (this.studentName=='' || this.motherName=='' || this.fatherName=='' ||
+						 this.birthDate==''	|| this.selected=='' ){
+							alert("Campo obrigatorio vazio");
+							return false;
+						}
+						return true;
+					}*/
+				}
+
+			})
+		</script>
+	</body>
+</html>

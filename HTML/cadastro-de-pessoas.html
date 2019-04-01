@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Cadastro</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	<style>
+		#formulario{
+			text-align: center;
+		}
+		.aaa {
+	  	display: flex;
+	  	flex-direction: column;
+		}
+		span{
+			margin: 5px;
+		}
+		table{
+			margin-top: 5px;
+		}
+	</style>
+
+</head>
+
+<body>
+	<div id="formulario">
+		<h1> CADASTRO DE USUARIOS </h1>
+		<div class="aaa">
+			<span>
+				Primeiro nome: <input v-model='firstName'>
+				Ultimo nome: <input v-model='lastName'>
+			</span>
+			<span>
+				Data de Nascimento: <input type='date' v-model='birthDate'>
+	     	Sexo:
+				<select v-model="selected">
+				  <option disabled value="">---</option>
+				  <option >Masculino</option>
+				  <option>Feminino</option>
+				  <option>Outros</option>
+				</select>
+			</span>
+		</div>
+		<button class="btn btn-secondary" type="submit" v-on:click="cadastrar()"> Enviar </button>
+
+		<table-user v-bind:itens='cadastro'>
+		</table-user>
+
+	</div>
+
+
+<script>
+
+  var tableUser = Vue.component('table-user', {
+		props: ['itens'],
+		data: {
+			styleObject:{
+				activeColor: 'black',
+			}
+		},
+		methods: {
+			mudarcor(){
+					var num = Math.floor(Math.random() * 3); // gerando numero aleatorio de 0 a N
+
+					if (num==0){
+						this.activeColor = 'red';
+					}
+					else if (num==1) {
+						this.activeColor= 'grey';
+					}
+					else {
+						this.activeColor= 'blue';
+					}
+			}
+		},
+		template: `
+			<div>
+				<div style="text-align:left">
+					<button class="btn btn-secondary" type="submit" v-on:click='mudarcor()'> COR </button>
+				</div>
+				<table class="table table-dark table-striped" v-bind:style="styleObject">
+					<tr>
+						<th> Primeiro nome </th>
+						<th> Ultimo nome </th>
+						<th> Data de nascimento </th>
+						<th> Sexo </th>
+					</tr>
+					<tr v-for="cadastro in itens"	v-bind:key="cadastro.id">
+						<td>{{ cadastro.firstName }}</td>
+						<td>{{ cadastro.lastName }}</td>
+						<td>{{ cadastro.birthDate }}</td>
+						<td>{{ cadastro.selected }}</td>
+					</tr>
+				</table>
+			<div>`
+	})
+	var vm = new Vue ({
+		components: {tableUser},
+		el: '#formulario',
+		data:{
+			cadastro: [],
+			firstName: '',
+			lastName: '',
+			birthDate: '',
+			selected: '',
+		},
+		methods:{
+			cadastrar() {
+				if(!this.validade()){
+					return;
+				}
+
+				let pessoatemp = {
+					firstName: this.firstName,
+					lastName: this.lastName,
+					birthDate: this.birthDate,
+					selected: this.selected,
+				}
+				this.cadastro.push(pessoatemp);
+			},
+
+			validade() {
+				if (this.firstName=='' || this.lastName=='' || this.birthDate==''
+				|| this.selected=='' ){
+					alert("Campo vazio");
+					return false;
+				}
+				return true;
+			}
+		}
+  })
+
+
+</script>
+</body>
+</html>
