@@ -1,11 +1,21 @@
 <!DOCTYPE HTML>
 <head>
+  <meta charset="UTF-8">
+  <title>Calculadora</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="../script/components.js"> </script>
+  <link rel="stylesheet" type="text/css" href="../CSS/style.css" />
 </head>
 <body>
+
+  <div id="menu-alto">
+    <nav-top> </nav-top>
+  </div>
+
   <span> Escolha uma opcao: </span> <br>
   <input type='radio' id='soma' name='opcao' value='soma'/> A - Soma <br>
   <input type='radio' id='diferenca' name='opcao' value=''/> B - Diferença <br>
@@ -17,7 +27,22 @@
   onclick="calcular()" style="width: 350px; margin: 10px;"/>
 
   <div id="resultado" style=" text-align: center; width: 350px;}"> </div>
+
+  <div id="menu-baixo">
+    <nav-bottom> </nav-bottom>
+  </div>
+
   <script>
+    var menuBaixo = new Vue({
+     components: {navBottom},
+     el: '#menu-baixo',
+    })
+
+    var menuAlto = new Vue({
+      components: {navTop},
+      el: '#menu-alto',
+    })
+
     var numero1, numero2, option;
     function calcular(){
       numero1 = parseInt(document.getElementById("numero1").value);

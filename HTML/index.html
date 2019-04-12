@@ -2,61 +2,136 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Testando umas paradas</title>
+	<title>Main</title>
 	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-	<link rel="stylesheet" type="text/css" href="style.css" />
-	<script src="script.js"></script>
-	<!--<meta http-equiv="refresh" content="2"> <!-- atualiza a pagina a uma quantidade de segundos-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script src="../script/classes.js"> </script>
+	<script src="../script/components.js"> </script>
+	<link rel="stylesheet" type="text/css" href="../CSS/style.css" />
+
+	<!--<meta http-equiv="refresh" content="2"> atualiza a pagina a uma quantidade de segundos-->
 </head>
 
 <body>
-	<!--<form>
-		First name:<br>
-		<input type="text" name="firstname"><br>
-		Last name:<br>
-		<input type="text" name="lastname">
-	</form> -->
-
-	<!-- <div id="demo">
-		<script>
-			document.getElementById("demo").innerHTML = "Hello JavaScript!";
-		</script>
-		<noscript>Sorry, your browser does not support JavaScript!</noscript>
-	</div> -->
-
-	<!--<button onclick="this.innerHTML = Date()">The time is?</button> -->
-	<div id="demo">
-	<button onclick="document.getElementById('demo').innerHTML = Date()">The time is?</button>
+	<div id="menu-alto">
+		<nav-top> </nav-top>
 	</div>
 
+	<div id="middle">
+		<div id="title">
+			<h1>Lorem Ipsum</h1>
 
-	<script>loadDoc()	</script>
+			<h4>
+				"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet,
+				consectetur, adipisci velit..."
+			</h4>
 
+			<h5>"There is no one who loves pain itself, who seeks after it and wants to
+				have it, simply because it is pain..."
+			</h5>
+		</div>
 
-	<span class="a"> AAA </span>
-	<span class="b"> BBB </span>
-	<span class="c"> CCC </span>
+		<hr>
 
-	<h1 style="font-size:1vw">Hello World</h1> <!-- tamanho do texto responsivo-->
+		<div id="content">
+			<p>Nulla viverra urna vel ipsum commodo, non pretium ligula malesuada.
+				Pellentesque at enim ornare, sollicitudin lorem ac, semper nisl. Duis in
+				diam nunc. Ut mauris diam, gravida quis metus vitae, lacinia vehicula sem.
+				Nulla feugiat tristique elit, in porta felis accumsan eget. Mauris
+				pharetra, massa ac dapibus ultricies, tortor nunc sagittis ex, vel posuere
+				sem libero a magna. Proin id interdum arcu. Quisque finibus velit quis sem
+				rhoncus, eu fringilla sapien hendrerit. Donec sem leo, congue et dolor
+				vitae, mattis varius ex. Nunc at risus leo. Pellentesque scelerisque neque
+				volutpat erat tincidunt rutrum. Duis in venenatis ex. Vivamus sagittis
+				ante nec porttitor fermentum. Vestibulum vestibulum porta bibendum. Nam
+				mollis malesuada neque et iaculis.
+			</p>
 
-	<div class="cities">
-	  <h2>London</h2>
-	  <p>London is the capital of England.</p>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+				Ut orci ex, pellentesque in nisl in, rhoncus facilisis arcu. Donec egestas
+				ut nunc vel feugiat. Orci varius natoque penatibus et magnis dis parturient
+				montes, nascetur ridiculus mus. Mauris varius, quam quis sodales bibendum,
+				ex metus finibus orci, sed vestibulum enim purus sollicitudin orci. Curabitur
+				semper luctus nibh, in faucibus est convallis vitae. Phasellus sed auctor dui,
+				quis porta leo. Praesent ut rutrum ligula.
+			</p>
+
+			<p>Nulla viverra urna vel ipsum commodo, non pretium ligula malesuada.
+				Pellentesque at enim ornare, sollicitudin lorem ac, semper nisl. Duis in
+				diam nunc. Ut mauris diam, gravida quis metus vitae, lacinia vehicula sem.
+				Nulla feugiat tristique elit, in porta felis accumsan eget. Mauris
+				pharetra, massa ac dapibus ultricies, tortor nunc sagittis ex, vel posuere
+				sem libero a magna. Proin id interdum arcu. Quisque finibus velit quis sem
+				rhoncus, eu fringilla sapien hendrerit. Donec sem leo, congue et dolor
+				vitae, mattis varius ex. Nunc at risus leo. Pellentesque scelerisque neque
+				volutpat erat tincidunt rutrum. Duis in venenatis ex. Vivamus sagittis
+				ante nec porttitor fermentum. Vestibulum vestibulum porta bibendum. Nam
+				mollis malesuada neque et iaculis.
+			</p>
+
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+				Ut orci ex, pellentesque in nisl in, rhoncus facilisis arcu. Donec egestas
+				ut nunc vel feugiat. Orci varius natoque penatibus et magnis dis parturient
+				montes, nascetur ridiculus mus. Mauris varius, quam quis sodales bibendum,
+				ex metus finibus orci, sed vestibulum enim purus sollicitudin orci. Curabitur
+				semper luctus nibh, in faucibus est convallis vitae. Phasellus sed auctor dui,
+				quis porta leo. Praesent ut rutrum ligula.
+			</p>
+
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+				Ut orci ex, pellentesque in nisl in, rhoncus facilisis arcu. Donec egestas
+				ut nunc vel feugiat. Orci varius natoque penatibus et magnis dis parturient
+				montes, nascetur ridiculus mus. Mauris varius, quam quis sodales bibendum,
+				ex metus finibus orci, sed vestibulum enim purus sollicitudin orci. Curabitur
+				semper luctus nibh, in faucibus est convallis vitae. Phasellus sed auctor dui,
+				quis porta leo. Praesent ut rutrum ligula.
+			</p>
+
+			<p>Nulla viverra urna vel ipsum commodo, non pretium ligula malesuada.
+				Pellentesque at enim ornare, sollicitudin lorem ac, semper nisl. Duis in
+				diam nunc. Ut mauris diam, gravida quis metus vitae, lacinia vehicula sem.
+				Nulla feugiat tristique elit, in porta felis accumsan eget. Mauris
+				pharetra, massa ac dapibus ultricies, tortor nunc sagittis ex, vel posuere
+				sem libero a magna. Proin id interdum arcu. Quisque finibus velit quis sem
+				rhoncus, eu fringilla sapien hendrerit. Donec sem leo, congue et dolor
+				vitae, mattis varius ex. Nunc at risus leo. Pellentesque scelerisque neque
+				volutpat erat tincidunt rutrum. Duis in venenatis ex. Vivamus sagittis
+				ante nec porttitor fermentum. Vestibulum vestibulum porta bibendum. Nam
+				mollis malesuada neque et iaculis.
+			</p>
+
+			<p>Vestibulum volutpat ante sed ex ultrices finibus. Donec porttitor massa
+				nec quam malesuada eleifend. In ac gravida sem. Pellentesque velit mauris,
+				elementum eget laoreet quis, egestas quis velit. Morbi efficitur purus non
+				ligula mattis, et egestas augue finibus. In sed mollis lectus, semper
+				viverra nunc. Sed sit amet nisi fringilla est sodales efficitur. Phasellus
+				nec orci ut est euismod placerat id vel nulla. Duis id ex cursus ex
+				facilisis faucibus efficitur nec diam. Ut iaculis arcu ut porta lacinia.
+			</p>
+		</div>
 	</div>
 
-	<div class="cities">
-	  <h2>Paris</h2>
-	  <p>Paris is the capital of France.</p>
+	<div id="menu-baixo">
+		<nav-bottom> </nav-bottom>
 	</div>
 
-	<div class="cities">
-	  <h2>Tokyo</h2>
-	  <p>Tokyo is the capital of Japan.</p>
-	</div>
+	<script>
+	 var menuBaixo = new Vue({
+		 components: {navBottom},
+		 el: '#menu-baixo',
+	 })
 
-	<h1>My <span class="note">Important</span> Heading</h1>
-	<p>This is some <span class="note">important</span> text.</p>
-
+	 var menuAlto = new Vue({
+	 	components: {navTop},
+	 	el: '#menu-alto',
+	 })
+	</script>
 
 </body>
 </html>

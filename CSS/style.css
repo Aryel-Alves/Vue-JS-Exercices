@@ -1,42 +1,49 @@
 body {
-    background-color: grey; 
-} 
-div.cities {
-  background-color: black;
+    background-color: white;
+}
+#middle {
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  height: auto;
+}
+#title {
+  text-align: center;
+}
+#menu-alto {
+  margin-bottom: 55px;
+}
+.preto{
+  background: #000000 !important;
+}
+#ul-menu-bot {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+#relogio{
+  text-align: center;
+  font-weight: 100;
   color: white;
-  margin: 20px;
-  padding: 20px;
-} 
-span.note {
-  font-size: 120%;
-  color: red;
 }
-div:hover {
-  background-color: blue;
-}
-span.a {
-  display: inline; /* the default for span */
-  width: 100px;
-  height: 100px;
-  padding: 5px;
-  border: 1px solid blue; 
-  background-color: yellow; 
+.li-menu-bot {
+  float: left;
 }
 
-span.b {
-  display: inline-block;
-  width: 100px;
-  height: 100px;
-  padding: 5px;
-  border: 1px solid blue; 
-  background-color: yellow; 
-}
-
-span.c {
+.li-menu-bot a {
   display: block;
-  width: 100px;
-  height: 100px;
-  padding: 5px;
-  border: 1px solid blue; 
-  background-color: yellow; 
+  color: grey !important;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.li-menu-bot a:hover:not(.active) {
+  color: white !important;
+}
+
+.active {
+  background-color: #4CAF50;
 }

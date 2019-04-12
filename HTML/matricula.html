@@ -8,7 +8,9 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
+		<script src="../script/classes.js"> </script>
+		<script src="../script/components.js"> </script>
+		<link rel="stylesheet" type="text/css" href="../CSS/style.css" />
 		<style>
 			#box1{
 				padding: 10px;
@@ -48,6 +50,10 @@
 	</head>
 
 	<body>
+		<div id="menu-alto">
+			<nav-top> </nav-top>
+		</div>
+
 		<div id="formulario">
 			<div style="text-align: center">
 				<h1> Escola virtual </h1>
@@ -70,15 +76,15 @@
 					</div>
 
 					<div style="text-align: left;">
-						<input v-model='studentName'><br>
-						<input type='date' v-model='birthDate'><br>
-						<input v-model='motherName'><br>
-						<input v-model='fatherName'><br>
-						<span>DDD(<input v-model='telefone.ddd' style='width:30px'>)
-							Tel: <input v-model='telefone.numero' style='width:120px'>
-							Ramal: <input v-model='telefone.ramal' style='width:40px'>
+						<input v-model='newStudent.studentName'><br>
+						<input type='date' v-model='newStudent.birthDate'><br>
+						<input v-model='newStudent.motherName'><br>
+						<input v-model='newStudent.fatherName'><br>
+						<span>DDD(<input v-model='newStudent.telefone.ddd' style='width:30px'>)
+							Tel: <input v-model='newStudent.telefone.numero' style='width:120px'>
+							Ramal: <input v-model='newStudent.telefone.ramal' style='width:40px'>
 						</span><br>
-						<input v-model='email'></span>
+						<input v-model='newStudent.email'></span>
 					</div>
 				</div>
 			</div>
@@ -87,7 +93,7 @@
 				<div>
 					<b>Informações da Matricula:</b><br>
 					Serie:<br>
-					<select v-model="serie">
+					<select v-model="newStudent.serie">
 						<option disabled value="">---</option>
 						<option>Pré Escolar</option>
 						<option>Ensino Medio</option>
@@ -96,18 +102,18 @@
 				</div>
 
 				<div class='info'>
-					<br>Turno:<br> <span><input type='radio' v-model='turno' value='manha'> Manha </span>
-					<br><span><input type='radio' v-model='turno' value='Noite'> Noite </span>
+					<br>Turno:<br> <span><input type='radio' v-model='newStudent.turno' value='manha'> Manha </span>
+					<br><span><input type='radio' v-model='newStudent.turno' value='Noite'> Noite </span>
 				</div>
 
 				<div class='info'>
 					<br>Atividades Extracurriculares:<br>
-					<input type='checkbox' v-model='extra.infor'> Informatica<br>
-					<input type='checkbox' v-model='extra.music'> Musica<br>
-					<input type='checkbox' v-model='extra.balet'> Balet<br>
-					<input type='checkbox' v-model='extra.paint'> Pintura<br>
-					<input type='checkbox' v-model='extra.judo'> Judô<br>
-					<input type='checkbox' v-model='extra.fut'> Futebol<br>
+					<input type='checkbox' v-model='newStudent.extra.infor'> Informatica<br>
+					<input type='checkbox' v-model='newStudent.extra.music'> Musica<br>
+					<input type='checkbox' v-model='newStudent.extra.balet'> Balet<br>
+					<input type='checkbox' v-model='newStudent.extra.paint'> Pintura<br>
+					<input type='checkbox' v-model='newStudent.extra.judo'> Judô<br>
+					<input type='checkbox' v-model='newStudent.extra.fut'> Futebol<br>
 				</div>
 
 			</div>
@@ -129,8 +135,21 @@
 			</table-user>
 
 		</div>
+		<div id="menu-baixo">
+			<nav-bottom> </nav-bottom>
+		</div>
 
 		<script>
+			var menuBaixo = new Vue({
+		 	 components: {navBottom},
+		 	 el: '#menu-baixo',
+		  })
+
+			var menuAlto = new Vue({
+		  	components: {navTop},
+		  	el: '#menu-alto',
+		  })
+
 			var tableUser = Vue.component('table-user', {
 				props: ['itens'],
 				template: `
@@ -155,14 +174,32 @@
 								<td>{{ (cadastro.telefone.ddd)+' '+cadastro.telefone.numero+' '+cadastro.telefone.ramal }}</td>
 								<td>{{ cadastro.email }}</td>
 								<td>{{ cadastro.turno }}</td>
-								<td>
-									<small v-if="cadastro.extra.infor"> Informatica
-									</small>
-								</td>
+								<td>{{atividadesExtras(cadastro)}}</td>
 								<td>{{ cadastro.serie }}</td>
 							</tr>
 						</table>
 					<div>`,
+					methods:{
+						atividadesExtras(cadastro){
+							let ativArray= [];
+
+							let ativObj = {
+								infor: 'Informatica',
+								music: 'Musica',
+								balet: 'Balet',
+								paint: 'Pintura',
+								judo: 'Judô',
+								fut: 'Futebol',
+							}
+
+							for (var key in cadastro.extra){
+								if (cadastro.extra[key]){
+									ativArray.push(ativObj[key]);
+								}
+							}
+							return ativArray.join(', ');
+						}
+					},
 			})
 
 			var vm = new Vue ({
@@ -170,27 +207,7 @@
 				el: '#formulario',
 				data:{
 					cadastro: [],
-					studentName: '',
-					birthDate: '',
-					motherName: '',
-					fatherName: '',
-					telefone: {
-						ddd: '',
-						numero: '',
-						ramal: '',
-					},
-					turno: '',
-					extra: {
-						infor: false,
-						music: false,
-						balet: false,
-						paint: false,
-						judo: false,
-						fut: false,
-					},
-					email: '',
-					serie: '',
-					turno: '',
+					newStudent: new Student,
 					tableShow: false,
 				},
 				methods:{
@@ -198,58 +215,9 @@
 						/*if(!this.validade()){
 							return;
 						}*/
-
-						let studentTemp = {
-							studentName: this.studentName,
-							birthDate: this.birthDate,
-							motherName: this.motherName,
-							fatherName: this.fatherName,
-							telefone: {
-								ddd: this.telefone.ddd,
-								numero: this.telefone.numero,
-								ramal: this.telefone.ramal,
-							},
-							turno: this.turno,
-							extra: {
-								infor: this.extra.infor,
-								music: this.extra.music,
-								balet: this.extra.balet,
-								paint: this.extra.paint,
-								judo: this.extra.judo,
-								fut: this.extra.fut,
-							},
-							email: this.email,
-							serie: this.serie,
-							turno: this.turno,
-						}
-
-						this.cadastro.push(studentTemp);
-						this.limpar();
+						this.cadastro.push(this.newStudent);
+						this.newStudent = new Student;
 						alert('Cadastrado com Sucesso!');
-
-					},
-					limpar(){
-						this.studentName= '';
-						this.birthDate= '';
-						this.motherName= '';
-						this.fatherName= '';
-						this.telefone= {
-							ddd: '',
-							numero: '',
-							ramal: '',
-						};
-						this.turno= '';
-						this.extra= {
-							infor: false,
-							music: false,
-							balet: false,
-							paint: false,
-							judo: false,
-							fut: false,
-						},
-						this.email= '';
-						this.serie= '';
-						this.turno= '';
 					},
 					tableUsers(){
 							this.tableShow = !this.tableShow

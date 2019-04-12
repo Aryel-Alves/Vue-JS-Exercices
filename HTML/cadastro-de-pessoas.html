@@ -8,6 +8,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script src="../script/components.js"> </script>
+	<link rel="stylesheet" type="text/css" href="../CSS/style.css" />
 
 	<style>
 		#formulario{
@@ -28,6 +30,10 @@
 </head>
 
 <body>
+	<div id="menu-alto">
+		<nav-top> </nav-top>
+	</div>
+
 	<div id="formulario">
 		<h1> CADASTRO DE USUARIOS </h1>
 		<div class="aaa">
@@ -50,11 +56,22 @@
 
 		<table-user v-bind:itens='cadastro'>
 		</table-user>
-
 	</div>
 
+	<div id="menu-baixo">
+		<nav-bottom> </nav-bottom>
+	</div>
 
 <script>
+	var menuBaixo = new Vue({
+	 components: {navBottom},
+	 el: '#menu-baixo',
+	})
+
+	var menuAlto = new Vue({
+		components: {navTop},
+		el: '#menu-alto',
+	})
 
   var tableUser = Vue.component('table-user', {
 		props: ['itens'],

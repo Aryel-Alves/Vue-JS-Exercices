@@ -1,57 +1,84 @@
-<head>
-  <meta charset = 'utf-8'/>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-</head>
-<h1> Cria 5 numeros aleatorios de 0 a 50</h1>
-<h2> Digite 5 numeros para tentar acertar: </h2>
-<input type='text' id='numero'/>
-<input type='submit' value='Adicionar' id='adivinhar'
-onclick="addNum()"/>
-<script type="text/javascript">
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset = 'utf-8'/>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="../script/components.js"></script>
+    <link rel="stylesheet" type="text/css" href="../CSS/style.css" />
+  </head>
 
-  var loteria = [];
-  for (var i=0; i<=4; i++){
-    loteria[i] = Math.round(Math.random() * 50)
-  }// colocando 5 numeros aleatorios arredondados no array loteria
+  <body>
 
-  console.log(loteria); // printa no console os numeros sorteados
+    <div id="menu-alto">
+  		<nav-top> </nav-top>
+  	</div>
 
-  var click = 0, acerto = 0, i=0;
-  var numero = []
+    <h1> Cria 5 numeros aleatorios de 0 a 50</h1>
+    <h2> Digite 5 numeros para tentar acertar: </h2>
+    <input type='text' id='numero'/>
+    <input type='submit' value='Adicionar' id='adivinhar'
+    onclick="addNum()"/>
 
-  function addNum() {
+    <div id="menu-baixo">
+      <nav-bottom> </nav-bottom>
+    </div>
+
+    <script type="text/javascript">
+      var menuBaixo = new Vue({
+       components: {navBottom},
+       el: '#menu-baixo',
+       })
+
+      var menuAlto = new Vue({
+        components: {navTop},
+        el: '#menu-alto',
+      })
+
+      var loteria = [];
+      for (var i=0; i<=4; i++){
+        loteria[i] = Math.round(Math.random() * 50)
+      }// colocando 5 numeros aleatorios arredondados no array loteria
+
+      console.log(loteria); // printa no console os numeros sorteados
+
+      var click = 0, acerto = 0, i=0;
+      var numero = []
+
+      function addNum() {
 
 
-    var valor = parseInt(document.getElementById('numero').value);
-    var filtro = numero.filter(e=>e==valor);
+        var valor = parseInt(document.getElementById('numero').value);
+        var filtro = numero.filter(e=>e==valor);
 
-    if (filtro[0]==null){
-      numero.push(valor);
-      click++;
-      console.log(numero);
-    }
+        if (filtro[0]==null){
+          numero.push(valor);
+          click++;
+          console.log(numero);
+        }
 
-    for (var i=0; i<=loteria.length; i++){
-      if (valor == loteria[i]){ // chegando se o numero digitado é igual aos aleatorios
-        acerto++;
-        alert("acertou mizeravi");
-        break;
+        for (var i=0; i<=loteria.length; i++){
+          if (valor == loteria[i]){ // chegando se o numero digitado é igual aos aleatorios
+            acerto++;
+            alert("acertou mizeravi");
+            break;
+          }
+        }
+
+
+        if(click==5){
+          printartudo();
+        }
       }
-    }
 
+      function printartudo(){
+        document.getElementsByTagName("body")[0].innerHTML = "<h1> voce teve "
+        + acerto + " acertos </h1>" + loteria.toString();
 
-    if(click==5){
-      printartudo();
-    }
-  }
-
-  function printartudo(){
-    document.getElementsByTagName("body")[0].innerHTML = "<h1> voce teve "
-    + acerto + " acertos </h1>" + loteria.toString();
-
-  }
-
-</script>
+      }
+    </script>
+  </body>
+</html>

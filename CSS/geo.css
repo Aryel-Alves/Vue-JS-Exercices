@@ -1,0 +1,30 @@
+body{
+  background: grey;
+}
+
+.circle{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.triangle{
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 100px solid red;
+}
+.test{box-shadow: 0px 0px 0px 2px #000;}
+
+
+.stroke{
+  border: 2px solid #000;
+}
+.red{
+  background: red;
+}
+img {
+  float: left;
+  shape-outside: circle(50%) border-box;
+}
