@@ -11,11 +11,11 @@
 	<script src="../script/classes.js"> </script>
 	<script src="../script/components.js"> </script>
 	<link rel="stylesheet" type="text/css" href="../CSS/style.css" />
-
 	<!--<meta http-equiv="refresh" content="2"> atualiza a pagina a uma quantidade de segundos-->
 </head>
 
 <body>
+
 	<div id="menu-alto">
 		<nav-top> </nav-top>
 	</div>
@@ -35,21 +35,10 @@
 		</div>
 
 		<hr>
+			<slider-materia> </slider-materia> <!-- Slide feito com Vue.js -->
+		<hr>
 
 		<div id="content">
-			<p>Nulla viverra urna vel ipsum commodo, non pretium ligula malesuada.
-				Pellentesque at enim ornare, sollicitudin lorem ac, semper nisl. Duis in
-				diam nunc. Ut mauris diam, gravida quis metus vitae, lacinia vehicula sem.
-				Nulla feugiat tristique elit, in porta felis accumsan eget. Mauris
-				pharetra, massa ac dapibus ultricies, tortor nunc sagittis ex, vel posuere
-				sem libero a magna. Proin id interdum arcu. Quisque finibus velit quis sem
-				rhoncus, eu fringilla sapien hendrerit. Donec sem leo, congue et dolor
-				vitae, mattis varius ex. Nunc at risus leo. Pellentesque scelerisque neque
-				volutpat erat tincidunt rutrum. Duis in venenatis ex. Vivamus sagittis
-				ante nec porttitor fermentum. Vestibulum vestibulum porta bibendum. Nam
-				mollis malesuada neque et iaculis.
-			</p>
-
 			<p>
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 				Ut orci ex, pellentesque in nisl in, rhoncus facilisis arcu. Donec egestas
@@ -122,15 +111,20 @@
 	</div>
 
 	<script>
-	 var menuBaixo = new Vue({
-		 components: {navBottom},
-		 el: '#menu-baixo',
-	 })
+	  var slide = new Vue({
+			components: {slider},
+			el: '#middle',
+		})
 
-	 var menuAlto = new Vue({
-	 	components: {navTop},
-	 	el: '#menu-alto',
-	 })
+	 	var menuBaixo = new Vue({
+		 	components: {navBottom},
+		 	el: '#menu-baixo',
+	 	})
+
+	 	var menuAlto = new Vue({
+	 		components: {navTop},
+	 		el: '#menu-alto',
+	 	})
 	</script>
 
 </body>

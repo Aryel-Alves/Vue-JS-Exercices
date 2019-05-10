@@ -1,5 +1,23 @@
-body {
-    background-color: white;
+body{
+  background-color: white;
+}
+#menu-alto{
+  margin-bottom: 55px;
+}
+#slide{
+  height: 400px;
+}
+#innerImage{
+  width:auto;
+  height:400px;
+  background-image: url(../IMG/circle.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.btn-dark{
+  margin-top: 200px;
+  background-color: #343a4096;
+  border-color: #343a4096;
 }
 #middle {
   margin-left: auto;
@@ -9,9 +27,6 @@ body {
 }
 #title {
   text-align: center;
-}
-#menu-alto {
-  margin-bottom: 55px;
 }
 .preto{
   background: #000000 !important;

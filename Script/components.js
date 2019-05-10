@@ -1,9 +1,73 @@
+var slider = Vue.component ('slider-materia',{
+  template:`
+  <div id="slide">
+    <div id="innerImage">
+      <button type="button" class="botao btn btn-dark"
+      v-on:click="manualTroca(-1)">
+        <--
+      </button>
+      <button type="button" class="botao btn btn-dark"
+      v-on:click="manualTroca(1)" style="float: right;">
+        -->
+      </button>
+    </div>
+  </div>
+  `,
+  data(){
+    return{
+      img: [0,1,2],
+      atual: 0,
+      imgUrl: ['url(../IMG/circle.png)','url(../IMG/triangle.svg)',
+      'url(../IMG/logo.svg)']
+
+    }
+  },
+  methods:{
+    manualTroca(entrada){
+      
+      clearInterval(this.delay);
+      if (entrada == -1 ){
+        this.atual--;
+      }
+      if (entrada == 1 ){
+        this.atual++;
+      }
+      if (this.atual<0){
+        this.atual = this.imgUrl.length-1;
+      }
+      if(this.atual>=this.imgUrl.length){
+        this.atual = 0;
+      }
+    },
+  },
+  watch:{
+    atual: function (){
+      document.getElementById("innerImage").style.backgroundImage =
+      this.imgUrl[this.atual];
+    }
+  },
+  created(){
+    var obj = this;
+    this.delay = setInterval(function(){
+      if (obj.atual<obj.imgUrl.length){
+        obj.atual++;
+      } else {
+        obj.atual = 0;
+      }
+    },3000);
+  },
+
+})
+
+
+
+
 var navBottom = Vue.component ('nav-bottom',{
   template:`
       <nav>
         <ul id="ul-menu-bot">
           <li class="li-menu-bot">
-            <a href="index.html"> INDEX </a>
+            <a href="index.html"> WWW.SITEBOLADAO.COM © </a>
           </li>
           <li class="li-menu-bot" style="float:right">
             <div id="relogio">
